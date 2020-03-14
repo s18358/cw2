@@ -78,8 +78,17 @@ namespace cw2
                 }
                 
             }
-
             // przejsc przez dane i wywalic/zalogowac duplikaty i logowac do pliku
+            var hash = new HashSet<Student>(new Duplikat());
+            foreach (var s in list)
+            {
+                if (!hash.Add(s))
+                {
+                    Logger.Log("Dane studenta znajduja sie juz w plik : " + s.ToString());
+                }
+            }
+
+
             // przygotowac dane do xml/json
             // seriazlizacja
             // zmakniecie logow i zapisanie
