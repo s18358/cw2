@@ -1,18 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace cw2
 {
-    public class Logger
+    public static class Logger
     {
-        public static StringBuilder tekst = new StringBuilder();
+        private static StringBuilder Tekst = new StringBuilder();
         
-        public static void Argerror(string s)
+        public static void Log(string s)
         {
-            tekst.Append(DateTime.UtcNow + " : Niepoprwany Argument wprowadzono -  " + s);
-            throw new System.ArgumentException("Wprowadzony argument jest niepoprawny");
+            Tekst.Append(DateTime.UtcNow + " : " + s + "\r\n");
+        }
+
+        public static void Close()
+        {
+            var output = Tekst.ToString();
+            StreamWriter OutputFile = new StreamWriter(@"..\..\..\log.txt");
+            OutputFile.Write(Tekst);
+            OutputFile.Close();
         }
     }
 }
