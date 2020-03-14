@@ -12,7 +12,7 @@ namespace cw2
         {
 
             //obsluga argumentow wejscia
-            var input = new string[3] {"data.csv", "result.xml", "xml"};
+            var input = new string[3] {@"..\..\..\dane.csv", @"..\..\..\result.xml", "xml"};
             var count = 0;
             var amount = args.Length;
             if (args.Length > 0 && args.Length <= 3)
@@ -45,7 +45,7 @@ namespace cw2
             if (count != amount)
             {
                 Console.WriteLine("Blad w argumentach przy wywolaniu");
-                Logger.Log("Argumenty wywoalnia nieprawidlowe");
+                Logger.Log("Argumenty wywolania nieprawidlowe");
                 Logger.Close();
                 Environment.Exit(-2);
             }
@@ -62,14 +62,30 @@ namespace cw2
 
             var lines = File.ReadLines(path);
             
-            //stworzenie listy z danych z pliku
+            //stworzenie listy z danych z pliku z odrzuceniem niepoprwanych danych
+            List<Student> list = new List<Student>();
 
+            foreach (var line in lines)
+            {
+                Console.WriteLine(line);
+                int commas = line.Split(',').Length - 1; //sprawdzanie ilosci przecinkow
+                if (commas == 8 && !line.Contains(",,") && !line.Contains(", ,"))
+                {
+                    var student = new Student(line);
+                    list.Add(student);
+                } else {
+                    Logger.Log("Niepoprwane dane studenta " + line);
+                }
+                
+            }
 
             // przejsc przez dane i wywalic/zalogowac duplikaty i logowac do pliku
             // przygotowac dane do xml/json
             // seriazlizacja
             // zmakniecie logow i zapisanie
             // zapisanie do pliku
+            
+            Logger.Close();
         }
     }
 }

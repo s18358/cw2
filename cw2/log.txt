@@ -1,1 +1,1 @@
-14.03.2020 08:29:27 : Argumenty wyowalnia nieprwaidlowe
+14.03.2020 09:27:06 : Plik dane.csv nie istnieje
