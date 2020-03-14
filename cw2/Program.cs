@@ -10,7 +10,7 @@ namespace cw2
     {
         public static void Main(string[] args)
         {
-
+            Logger.Log("Start Programu");
             //obsluga argumentow wejscia
             var input = new string[3] {@"..\..\..\dane.csv", @"..\..\..\result.xml", "xml"};
             var count = 0;
@@ -92,7 +92,7 @@ namespace cw2
             Converter.Create(input[1], input[2], hash);
             // seriazlizacja
             // zapisanie do pliku
-            
+            Logger.Log("Zakonczenie Programu");
             Logger.Close();
         }
     }
