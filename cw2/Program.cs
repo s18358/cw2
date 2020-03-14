@@ -87,11 +87,10 @@ namespace cw2
                     Logger.Log("Dane studenta znajduja sie juz w plik : " + s.ToString());
                 }
             }
-
-
+            
             // przygotowac dane do xml/json
+            Converter.Create(input[1], input[2], hash);
             // seriazlizacja
-            // zmakniecie logow i zapisanie
             // zapisanie do pliku
             
             Logger.Close();
